@@ -97,6 +97,7 @@ figure {
 }
 
 .nav__link {
+  display: inline-block;
   font-family: var(--font-condensed);
   font-size: var(--text-ui-md);
   text-transform: uppercase;
@@ -115,6 +116,11 @@ figure {
   outline: none;
   box-shadow: var(--focus-ring);
   border-radius: 2px;
+}
+
+.nav__link--disabled {
+  color: var(--color-ink-soft);
+  opacity: 0.72;
 }
 
 .nav__cta {
@@ -140,6 +146,16 @@ figure {
 .nav__cta:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
+}
+
+.nav__cta--disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.nav__cta--disabled:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 @media (max-width: 720px) {
@@ -372,6 +388,14 @@ figure {
   border-radius: 2px;
 }
 
+.hero__guest-cta--disabled {
+  cursor: default;
+}
+
+.hero__guest-cta--disabled:hover {
+  transform: none;
+}
+
 .hero__guest-cta img {
   width: clamp(2rem, 1.5rem + 1.5vw, 3.5rem);
   height: auto;
@@ -554,22 +578,6 @@ figure {
 /* --- Tablet landscape (1024px) --- */
 
 @media (max-width: 1024px) {
-  .hero__shape-blue {
-    background-size: 1000px 578px;
-  }
-
-  .hero__shape-blue::after {
-    -webkit-mask-size: 1000px 578px;
-    mask-size: 1000px 578px;
-  }
-
-  .hero__shape-red {
-    width: 360px;
-    height: 302px;
-    background-size: 360px 302px;
-    margin-top: -120px;
-  }
-
   .hero__portrait img {
     width: 230px;
     height: 340px;
@@ -643,19 +651,22 @@ figure {
 
 @media (max-width: 720px) {
   .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    height: auto;
     min-height: auto;
     overflow: hidden;
-    padding: var(--space-4);
-    gap: var(--space-4);
+    padding: calc(var(--space-16) + var(--space-8)) var(--space-4) var(--space-8);
+    gap: var(--space-5);
+    justify-items: center;
   }
 
   .hero__shape-blue {
     grid-column: 1;
-    grid-row: 1 / -1;
-    opacity: 0.08;
-    background-size: cover;
+    grid-row: 1 / span 3;
+    opacity: 0.12;
+    background-position: center top;
+    background-size: 120% auto;
     -webkit-mask: none;
     mask: none;
   }
@@ -668,10 +679,13 @@ figure {
     grid-column: 1;
     grid-row: 1 / 2;
     margin: 0;
-    height: 80%;
-    align-self: center;
+    width: min(100%, 22rem);
+    height: auto;
+    aspect-ratio: 616 / 517;
+    align-self: start;
     justify-self: center;
-    width: 65%;
+    background-position: center;
+    background-size: contain;
   }
 
   .hero__portrait {
@@ -679,13 +693,14 @@ figure {
     grid-row: 1;
     z-index: 3;
     justify-self: center;
-    align-self: center;
+    align-self: end;
     padding: 0;
     margin: 0;
   }
 
   .hero__portrait img {
-    width: clamp(12rem, 8rem + 10.67vw, 18rem);
+    width: clamp(13rem, 45vw, 18rem);
+    height: auto;
     max-width: none;
   }
 
@@ -693,12 +708,27 @@ figure {
     grid-column: 1;
     grid-row: 2;
     padding: 0;
+    width: auto;
+    max-width: min(100%, 22rem);
+    margin: 0;
     text-align: center;
+    justify-self: center;
+    align-self: start;
+  }
+
+  .hero__title {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .hero__tagline {
+    font-size: clamp(1.375rem, 4.8vw, 2rem);
+    margin-top: var(--space-3);
   }
 
   .hero__title,
   .hero__tagline {
     transform: none;
+    text-wrap: balance;
   }
 
   .hero__card {
@@ -706,7 +736,44 @@ figure {
     grid-row: 3;
     transform: none;
     margin: 0;
-    padding: var(--space-6) var(--space-4);
+    width: min(100%, 22rem);
+    min-height: 0;
+    height: auto;
+    padding: calc(var(--space-16) + var(--space-4)) var(--space-4) var(--space-5);
+    gap: var(--space-4);
+    flex-direction: column;
+    justify-self: center;
+    text-align: center;
+    background-position: center;
+    background-size: 100% 100%;
+  }
+
+  .hero__guest {
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -35%);
+  }
+
+  .hero__guest img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .hero__guest-info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__guest-label {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .hero__guest-name {
+    font-size: clamp(2.5rem, 11vw, 3.5rem);
+  }
+
+  .hero__guest-cta {
+    justify-content: center;
   }
 
   .hero__phone {
@@ -727,11 +794,12 @@ figure {
   }
 
   .hero__card {
-    flex-direction: column;
-    text-align: center;
+    width: min(100%, 20rem);
+    padding-top: calc(var(--space-16) + var(--space-6));
   }
 
-  .hero__guest-info {
-    align-items: center;
+  .hero__guest img {
+    width: 7rem;
+    height: 7rem;
   }
 }

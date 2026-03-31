@@ -4,32 +4,24 @@
 
 ## Proyecto
 
-**El Locutorio** — Web de un TV show de humor con Harold Correa. Estética editorial/collage: formas SVG superpuestas con textura, halftone, tipografía expresiva (4 font families), composiciones asimétricas con elementos solapados. 6 secciones + footer.
+**El Locutorio** — Web de un TV show de humor con Harold Correa. Estética editorial/collage: formas SVG superpuestas con textura, halftone, tipografía expresiva (4 font families), composiciones asimétricas con elementos solapados. Por ahora solo está montado el hero.
 
-**Build**: Vite · CSS vanilla · Vanilla JS · GSAP
-**Sin CMS**: Contenido estático en HTML
-**Sin framework JS**: Vanilla + GSAP
+**Build actual**: HTML estático + CSS vanilla
+**Sin CMS**: Contenido estático en `index.html`
+**JS/GSAP**: planificado, todavía no conectado en este workspace
 
 ## Archivos
 
 ```
-src/
-├── index.html
-├── styles/
-│   ├── tokens.css        # Variables (colores, fonts, tipografía, spacing, decoración)
-│   └── styles.css        # Reset + componentes globales + secciones + responsive
-├── scripts/
-│   └── main.js           # GSAP animations
-├── assets/               # SVGs de formas, texturas, imágenes halftone
-│   ├── hero-blue-panel.svg
-│   ├── hero-red-panel.svg
-│   ├── hero-green-panel.svg
-│   ├── texture.png       # Textura de papel (tileable)
-│   ├── harold-halftone.webp
-│   ├── phone.webp
-│   └── ...
-└── public/
-    └── fonts/            # woff2 self-hosted
+index.html                 # Landing estática actual
+styles/
+├── fonts.css             # @font-face self-hosted
+├── tokens.css            # Variables (colores, fonts, tipografía, spacing, decoración)
+└── styles.css            # Reset + nav + hero + responsive
+public/
+├── assets/               # SVGs, PNGs y texturas
+└── fonts/                # woff2 self-hosted
+hero-architecture-final.md # Referencia conceptual del hero
 ```
 
 ---
@@ -94,11 +86,11 @@ Las formas geométricas NO son divs con `background-color` ni `clip-path`. Son *
 
 ```css
 .hero__shape-blue {
-  background: center / contain no-repeat url("/assets/hero-blue-panel.svg");
+  background: center / contain no-repeat url("/public/assets/hero-blue-panel.svg");
 }
 ```
 
-Si necesitas una nueva forma → exportar de Figma como SVG → `/assets/`.
+Si necesitas una nueva forma → exportar de Figma como SVG → `public/assets/`.
 
 ### Textura sobre formas = ::after con mask
 
@@ -109,12 +101,12 @@ Patrón obligatorio para todo panel/forma con textura:
   content: "";
   position: absolute;
   inset: 0;
-  background: center / cover no-repeat url("/assets/texture.png");
+  background: center / cover no-repeat url("/public/assets/texture.png");
   mix-blend-mode: multiply;
   opacity: 0.55;
   pointer-events: none;
-  -webkit-mask: center / contain no-repeat url("/assets/hero-blue-panel.svg");
-  mask: center / contain no-repeat url("/assets/hero-blue-panel.svg");
+  -webkit-mask: center / contain no-repeat url("/public/assets/hero-blue-panel.svg");
+  mask: center / contain no-repeat url("/public/assets/hero-blue-panel.svg");
 }
 ```
 
@@ -228,36 +220,19 @@ Si es pre-procesada, usar `drop-shadow` para integrarla:
 
 ## GSAP
 
-### Setup (Vanilla JS)
-```js
-gsap.registerPlugin(ScrollTrigger, SplitText);
-```
+GSAP no está montado todavía en este repo. No asumir `package.json`, bundler ni entrypoint JS.
 
-### Animaciones por sección
-
-**Hero**: stagger de entrada — portrait → headline (SplitText por chars) → tagline → card. Teléfono: swing sutil (`transform-origin: top center`).
-
-**Scroll**: Cada sección revela sus elementos con ScrollTrigger. Parallax por capas en el hero (formas más lentas, contenido más rápido).
-
-**Hover**: Cards con `translateY(-0.5rem)` + `drop-shadow`. CTAs con `translateY(-2px)`.
-
-**`prefers-reduced-motion`**: Obligatorio. Desactivar todo excepto fade-in básico.
-
-### Cleanup
-Proyecto MPA estático — no hay SPA routing. Pero si se migra a SPA en el futuro, cada animación necesita `ctx.revert()`. Dejarlo preparado:
-
-```js
-const ctx = gsap.context(() => {
-  // animaciones
-}, document.querySelector('.hero'));
-// ctx.revert() cuando sea necesario
-```
+Cuando se conecte:
+- crear primero la estructura JS real del proyecto
+- implementar `prefers-reduced-motion` desde el inicio
+- usar animaciones de entrada del hero como mejora progresiva, no como dependencia de layout
+- documentar el entrypoint concreto antes de añadir más secciones
 
 ---
 
 ## Tokens
 
-El archivo `tokens.css` contiene todas las variables del proyecto. Estructura:
+El archivo `styles/tokens.css` contiene todas las variables del proyecto. Estructura:
 
 - **Colores**: `--color-*`
 - **Fonts**: `--font-*` (4 familias)
@@ -269,7 +244,7 @@ El archivo `tokens.css` contiene todas las variables del proyecto. Estructura:
 
 ### Regla: No hardcodear valores
 
-Si necesitas un valor de tipografía, spacing, color → usa un token. Si no hay token adecuado → propón crearlo en tokens.css. No hardcodear.
+Si necesitas un valor de tipografía, spacing, color → usa un token. Si no hay token adecuado → propón crearlo en `styles/tokens.css`. No hardcodear.
 
 ### Regla: clamp() siempre con offset rem
 
