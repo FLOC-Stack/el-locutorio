@@ -358,6 +358,7 @@ figure {
 
 .hero__guest-name {
   font-family: var(--font-accent);
+  font-weight: 100;
   font-size: 75px;
   line-height: var(--lh-tight);
   color: var(--color-brand-yellow);

@@ -30,7 +30,7 @@ hero-architecture-final.md # Referencia conceptual del hero
 
 - **Collage editorial**: formas geométricas superpuestas, rotaciones sutiles (1-3°), asimetría
 - **Paleta**: Crema `#fffff0` base, azul `#3a96ff`, verde `#5ac181`, naranja `#ff4d13`, amarillo `#fdfb5e`. Saturados y directos.
-- **4 fonts**: Vampiro One (display), Staatliches (condensed/UI), Rubik Dirt (accent/números), Outfit (body)
+- **4 fonts**: Vampiro One (display), Staatliches (condensed/UI), Rubik Dirt (accent/números, siempre `font-weight: 100`), Outfit (body)
 - **Texturas**: Textura de papel (`texture.png`) multiplicada sobre formas con mask SVG
 - **Efectos tipográficos**: `-webkit-text-stroke` + `text-shadow` offset (sombra amarilla sólida)
 - **Decorativos**: Teléfono colgando, stickers, formas rotadas
