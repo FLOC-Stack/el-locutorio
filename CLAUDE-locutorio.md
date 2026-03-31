@@ -2,6 +2,8 @@
 
 > Extiende el CLAUDE.md base de FLOC. Las reglas base aplican. Aquí solo lo específico.
 
+> **IMPORTANT**: Read `PROJECT-LOG.md` at the start of every session for shared context (recent changes, decisions, current state). Update it after every significant change.
+
 ## Proyecto
 
 **El Locutorio** — Web de un TV show de humor con Harold Correa. Estética editorial/collage: formas SVG superpuestas con textura, halftone, tipografía expresiva (4 font families), composiciones asimétricas con elementos solapados. Por ahora solo está montado el hero.
