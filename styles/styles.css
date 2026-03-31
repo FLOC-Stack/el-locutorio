@@ -164,6 +164,11 @@ figure {
     justify-content: center;
   }
 
+  .nav__logo {
+    width: auto;
+    height: 80px;
+  }
+
   .nav__links {
     display: none;
   }
@@ -663,8 +668,9 @@ figure {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
-    padding: 0;
+    padding: 0 0 calc(60px + var(--space-6)) 0;
     position: relative;
   }
 
@@ -686,13 +692,13 @@ figure {
   /* Red shape — behind portrait */
   .hero__shape-red {
     position: absolute;
-    top: 130px;
-    left: 38px;
+    top: 100px;
+    left: 20px;
     z-index: 2;
-    width: 324px;
-    height: 272px;
+    width: 380px;
+    height: 320px;
     margin: 0;
-    background-size: 324px 272px;
+    background-size: 380px 320px;
   }
 
   /* Portrait */
@@ -706,8 +712,8 @@ figure {
   }
 
   .hero__portrait img {
-    width: 180px;
-    height: 266px;
+    width: 216px;
+    height: 320px;
     max-width: none;
     transform: rotate(-9.14deg);
   }
@@ -733,17 +739,17 @@ figure {
     text-align: center;
     width: 100%;
     margin: 0;
-    margin-top: var(--space-4);
+    margin-top: auto;
     padding: 0 var(--space-4);
   }
 
   .hero__title {
-    font-size: 48px;
+    font-size: 58px;
     transform: rotate(-2deg);
   }
 
   .hero__tagline {
-    font-size: 18px;
+    font-size: 22px;
     transform: rotate(-2deg);
     margin-top: var(--space-2);
   }
@@ -754,14 +760,14 @@ figure {
     z-index: 5;
     width: 334px;
     height: 165px;
-    margin: var(--space-6) 0;
-    padding: var(--space-4) var(--space-4) var(--space-4) 140px;
+    margin: auto 0 0 0;
+    padding: var(--space-4) var(--space-4) var(--space-4) 120px;
     background-size: 334px 165px;
     background-position: center;
   }
 
   .hero__guest {
-    left: -10px;
+    left: -20px;
   }
 
   .hero__guest img {
@@ -826,19 +832,19 @@ figure {
 
 @media (max-width: 420px) {
   .hero__portrait {
-    margin-left: 20px;
+    margin-left: 30px;
   }
 
   .hero__portrait img {
-    width: 140px;
-    height: 207px;
+    width: 198px;
+    height: 293px;
   }
 
   .hero__title {
-    font-size: 42px;
+    font-size: 50px;
   }
 
   .hero__tagline {
-    font-size: 16px;
+    font-size: 19px;
   }
 }
