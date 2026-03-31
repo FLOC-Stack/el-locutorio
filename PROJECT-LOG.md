@@ -18,6 +18,7 @@
 
 | Date       | Who    | What                                                        |
 |------------|--------|-------------------------------------------------------------|
+| 2026-03-31 | gsus   | Refine mobile hero: 3-line title/tagline, text +20%, portrait -10%, logo 80px, card spacing |
 | 2026-03-31 | gsus   | Hero mobile rewrite to match Figma v2 (flex layout, phone visible, ÚNETE fixed bottom) |
 | 2026-03-31 | gsus   | Center nav logo on mobile, hide texture overlay on mobile   |
 | 2026-03-31 | javi   | Enforce `font-weight: 100` on Rubik Dirt (font-accent)      |
@@ -29,7 +30,7 @@
 - **Mobile layout**: Flex column (not grid) for hero on ≤720px. Phone visible top-right, ÚNETE as fixed bottom CTA.
 - **Texture overlays**: Hidden on mobile (::after on blue shape = `display: none`) to avoid rendering artifacts with rotated shapes.
 - **No scaleY(-1) on phone**: The phone image must NOT be flipped vertically. Corrected twice.
-- **Branch strategy**: Agreed to use feature branches + PRs instead of pushing direct to main.
+- **Branch strategy**: Push direct to main. Validation is visual via Vercel deploy, not code review PRs. Revisit if project grows or adds logic/tests.
 
 ---
 
