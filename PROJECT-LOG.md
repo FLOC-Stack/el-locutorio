@@ -7,7 +7,7 @@
 
 ## Current state
 
-- **Only the Hero section is built.** No other sections exist yet.
+- **Hero + sección "Qué es" built.** The homepage now has the opening brand statement and its first supporting section.
 - **Next.js 16 App Router** + React 19 + TypeScript 6. Migrated from static HTML on 2026-04-02.
 - **CSS vanilla** (no Tailwind). Self-hosted fonts (Vampiro One, Staatliches, Rubik Dirt, Outfit).
 - **Deploy**: Vercel project `el-locutorio-site` (connected to `FLOC-Stack/el-locutorio`, auto-deploy on push to main).
@@ -25,6 +25,7 @@
 | 2026-03-31 | gsus   | Center nav logo on mobile, hide texture overlay on mobile   |
 | 2026-03-31 | javi   | Enforce `font-weight: 100` on Rubik Dirt (font-accent)      |
 | 2026-04-02 | gsus   | Migrate to Next.js 16 App Router (index.html → app/page.tsx, fix asset paths, remove vercel.json static config) |
+| 2026-04-02 | codex  | Add "Qué es" section under hero, move homepage copy to typed content object, enable nav anchor to the new section |
 
 ---
 

@@ -1,13 +1,27 @@
+import { Fragment } from "react";
+import { homePageContent } from "./homepage-content";
+
+function renderMultilineText(value: string) {
+  return value.split("\n").map((line, index, lines) => (
+    <Fragment key={`${line}-${index}`}>
+      {line}
+      {index < lines.length - 1 ? <br /> : null}
+    </Fragment>
+  ));
+}
+
 export default function HomePage() {
+  const { hero, about } = homePageContent;
+
   return (
     <>
       {/* === NAV === */}
       <nav className="nav" aria-label="Navegacion principal">
         <ul className="nav__links nav__links--left">
           <li>
-            <span className="nav__link nav__link--disabled" aria-disabled="true">
-              Que es
-            </span>
+            <a href={`#${about.id}`} className="nav__link">
+              Qué es
+            </a>
           </li>
           <li>
             <span className="nav__link nav__link--disabled" aria-disabled="true">
@@ -56,24 +70,22 @@ export default function HomePage() {
         </figure>
 
         <div className="hero__content">
-          <h1 className="hero__title">Con<br />Harold<br />Correa</h1>
-          <p className="hero__tagline">
-            Humor inteligente<br />&middot; Conversaci&oacute;n inc&oacute;moda<br />&middot; Comunidad real
-          </p>
+          <h1 className="hero__title">{renderMultilineText(hero.title)}</h1>
+          <p className="hero__tagline">{renderMultilineText(hero.tagline)}</p>
         </div>
 
         <div className="hero__card">
           <figure className="hero__guest">
             <img
-              src="/assets/guest-badge.png"
-              alt="Invitado destacado"
-              width={160}
-              height={160}
+              src={hero.featuredGuest.image.src}
+              alt={hero.featuredGuest.image.alt}
+              width={hero.featuredGuest.image.width}
+              height={hero.featuredGuest.image.height}
             />
           </figure>
           <div className="hero__guest-info">
-            <span className="hero__guest-label">Entrevistamos a</span>
-            <strong className="hero__guest-name">Luiza Bacceli</strong>
+            <span className="hero__guest-label">{hero.featuredGuest.label}</span>
+            <strong className="hero__guest-name">{hero.featuredGuest.name}</strong>
             <span
               className="hero__guest-cta hero__guest-cta--disabled"
               aria-disabled="true"
@@ -86,9 +98,9 @@ export default function HomePage() {
                 aria-hidden="true"
               />
               <span>
-                Play para ver el
+                {hero.featuredGuest.cta}
                 <br />
-                shows en vivo
+                {hero.featuredGuest.ctaNote}
               </span>
             </span>
           </div>
@@ -99,6 +111,51 @@ export default function HomePage() {
         </div>
 
         <a href="#" className="hero__cta-bottom">Únete</a>
+      </section>
+
+      {/* === ABOUT / QUE ES === */}
+      <section className="about" id={about.id} aria-labelledby="about-title">
+        <div className="about__intro">
+          <p className="about__eyebrow">{about.eyebrow}</p>
+          <h2 className="about__title" id="about-title">
+            {renderMultilineText(about.title)}
+          </h2>
+          <p className="about__description">{about.description}</p>
+        </div>
+
+        <div className="about__cards">
+          {about.cards.map((card) => (
+            <article
+              key={card.id}
+              className={`about__card about__card--${card.theme}`}
+              aria-labelledby={`about-card-title-${card.id}`}
+            >
+              <div className="about__card-media">
+                <img
+                  className="about__card-shape"
+                  src={card.shape.src}
+                  alt={card.shape.alt}
+                  width={card.shape.width}
+                  height={card.shape.height}
+                  aria-hidden="true"
+                />
+                <img
+                  className="about__card-graphic"
+                  src={card.graphic.src}
+                  alt={card.graphic.alt}
+                  width={card.graphic.width}
+                  height={card.graphic.height}
+                />
+                <div className="about__card-copy">
+                  <h3 className="about__card-title" id={`about-card-title-${card.id}`}>
+                    {card.title}
+                  </h3>
+                  <p className="about__card-description">{card.description}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </>
   );
