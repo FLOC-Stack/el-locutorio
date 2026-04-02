@@ -8,9 +8,11 @@
 ## Current state
 
 - **Only the Hero section is built.** No other sections exist yet.
-- **Static site**: `index.html` + CSS vanilla. No bundler, no JS framework, no GSAP yet.
-- **Deploy**: Vercel (connected to `FLOC-Stack/el-locutorio`, pending verification).
+- **Next.js 16 App Router** + React 19 + TypeScript 6. Migrated from static HTML on 2026-04-02.
+- **CSS vanilla** (no Tailwind). Self-hosted fonts (Vampiro One, Staatliches, Rubik Dirt, Outfit).
+- **Deploy**: Vercel project `el-locutorio-site` (connected to `FLOC-Stack/el-locutorio`, auto-deploy on push to main).
 - **Figma**: [Design file](https://www.figma.com/design/UMmGChrYUfYEMtF5HBAIW2/EL-Locutorio---Vibe-Design)
+- **Next step**: Payload CMS integration (Postgres via Neon, pending).
 
 ---
 
@@ -22,6 +24,7 @@
 | 2026-03-31 | gsus   | Hero mobile rewrite to match Figma v2 (flex layout, phone visible, ÚNETE fixed bottom) |
 | 2026-03-31 | gsus   | Center nav logo on mobile, hide texture overlay on mobile   |
 | 2026-03-31 | javi   | Enforce `font-weight: 100` on Rubik Dirt (font-accent)      |
+| 2026-04-02 | gsus   | Migrate to Next.js 16 App Router (index.html → app/page.tsx, fix asset paths, remove vercel.json static config) |
 
 ---
 
@@ -31,12 +34,14 @@
 - **Texture overlays**: Hidden on mobile (::after on blue shape = `display: none`) to avoid rendering artifacts with rotated shapes.
 - **No scaleY(-1) on phone**: The phone image must NOT be flipped vertically. Corrected twice.
 - **Branch strategy**: Push direct to main. Validation is visual via Vercel deploy, not code review PRs. Revisit if project grows or adds logic/tests.
+- **Next.js migration**: Kept CSS vanilla (no Tailwind), self-hosted fonts, same grid/overlap architecture. Asset paths changed from `/public/X` to `/X`.
 
 ---
 
 ## In progress
 
-- Vercel deploy verification (404 on el-locutorio.vercel.app — needs dashboard check)
+- Vercel deploy: pushed Next.js migration, awaiting first successful build (previous 404 was caused by `vercel.json` static config)
+- Payload CMS integration: Postgres/Neon DB setup pending
 - Desktop hero refinement pending (current focus was mobile)
 
 ---

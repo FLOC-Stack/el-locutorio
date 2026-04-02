@@ -205,19 +205,19 @@ figure {
   grid-row: 1 / -1;
   z-index: 1;
   position: relative;
-  background: center / 1456px 842px no-repeat url("/public/assets/hero-blue-panel.svg");
+  background: center / 1456px 842px no-repeat url("/assets/hero-blue-panel.svg");
 }
 
 .hero__shape-blue::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: center / cover repeat url("/public/assets/texture.png");
+  background: center / cover repeat url("/assets/texture.png");
   mix-blend-mode: multiply;
   opacity: 0.45;
   pointer-events: none;
-  -webkit-mask: center / 1456px 842px no-repeat url("/public/assets/hero-blue-panel.svg");
-  mask: center / 1456px 842px no-repeat url("/public/assets/hero-blue-panel.svg");
+  -webkit-mask: center / 1456px 842px no-repeat url("/assets/hero-blue-panel.svg");
+  mask: center / 1456px 842px no-repeat url("/assets/hero-blue-panel.svg");
 }
 
 
@@ -234,19 +234,19 @@ figure {
   justify-self: start;
   margin-left: 5.42vw;
   margin-top: -163px;
-  background: center / 616px 517px no-repeat url("/public/assets/hero-red-panel.svg");
+  background: center / 616px 517px no-repeat url("/assets/hero-red-panel.svg");
 }
 
 .hero__shape-red::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: center / cover repeat url("/public/assets/texture.png");
+  background: center / cover repeat url("/assets/texture.png");
   mix-blend-mode: multiply;
   opacity: 0.45;
   pointer-events: none;
-  -webkit-mask: center / contain no-repeat url("/public/assets/hero-red-panel.svg");
-  mask: center / contain no-repeat url("/public/assets/hero-red-panel.svg");
+  -webkit-mask: center / contain no-repeat url("/assets/hero-red-panel.svg");
+  mask: center / contain no-repeat url("/assets/hero-red-panel.svg");
 }
 
 
@@ -330,7 +330,7 @@ figure {
   padding: var(--space-8) var(--space-6) var(--space-8) 140px;
 
   overflow: visible;
-  background: center / 630px 312px no-repeat url("/public/assets/hero-green-panel.svg");
+  background: center / 630px 312px no-repeat url("/assets/hero-green-panel.svg");
 }
 
 .hero__guest {
