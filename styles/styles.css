@@ -904,7 +904,7 @@ figure {
   max-width: none;
   font-size: 18px;
   font-weight: 300;
-  line-height: 1;
+  line-height: var(--lh-body);
   text-wrap: pretty;
 }
 
@@ -919,6 +919,14 @@ figure {
 
 .about__card {
   position: relative;
+}
+
+.about__card--green {
+  z-index: 1;
+}
+
+.about__card--blue {
+  z-index: 2;
 }
 
 .about__card--green {
@@ -1001,21 +1009,22 @@ figure {
 }
 
 .about__card--green .about__card-title {
-  width: 174.77px;
+  max-width: 174.77px;
   color: var(--color-brand-green);
   -webkit-text-stroke: 1px var(--color-brand-yellow);
   text-shadow: 0 4px 0 var(--color-brand-yellow);
 }
 
 .about__card--blue .about__card-title {
-  width: 273.71px;
-  color: var(--color-brand-green);
+  max-width: 273.71px;
+  color: var(--color-brand-blue);
   -webkit-text-stroke: 1px var(--color-brand-yellow);
   text-shadow: 0 4px 0 var(--color-brand-yellow);
 }
 
 .about__card-description {
-  width: 351.75px;
+  max-width: 351.75px;
+  width: 100%;
   font-size: 18px;
   line-height: 1.1;
   color: var(--color-brand-yellow);
@@ -1032,10 +1041,6 @@ figure {
   top: 232.75px;
 }
 
-.about__card--blue .about__card-title {
-  color: var(--color-brand-blue);
-}
-
 @media (min-width: 1025px) {
   .about {
     --about-cards-scale: 1.2624;
@@ -1046,7 +1051,10 @@ figure {
     display: block;
     position: relative;
     width: min(100%, 1120px);
-    height: 540px;
+    /* aspect-ratio preserves proportions as container scales.
+       scale(1.2624) × ~487px intrinsic height = ~615px + 34px top offset ≈ 650px needed.
+       1120 / 650 ≈ 1.72 */
+    aspect-ratio: 1120 / 650;
     margin: 28px auto 0;
   }
 
@@ -1074,13 +1082,13 @@ figure {
   }
 
   .about__card--green {
-    left: -56px;
+    left: -62px;
     top: 34px;
     margin: 0;
   }
 
   .about__card--blue {
-    right: -38px;
+    right: -48px;
     top: -12px;
     margin: 0;
   }
@@ -1093,17 +1101,16 @@ figure {
 
   .about__cards {
     width: min(100%, 1240px);
-    height: 560px;
     margin-top: 32px;
   }
 
   .about__card--green {
-    left: 54px;
+    left: 46px;
     top: 26px;
   }
 
   .about__card--blue {
-    right: -44px;
+    right: -50px;
     top: -24px;
   }
 }
@@ -1135,7 +1142,7 @@ figure {
   }
 
   .about__card-description {
-    width: min(100%, 312px);
+    max-width: 312px;
     font-size: 16px;
   }
 
@@ -1180,6 +1187,24 @@ figure {
 
   .about__cards {
     gap: 0.5rem;
+    align-items: center;
+  }
+
+  .about__card--green {
+    margin-right: -16px;
+  }
+
+  .about__card--blue {
+    margin-left: -16px;
+  }
+
+  /* Normalize both cards to the same aspect-ratio at grid sizes.
+     Figma 1080px uses identical shape dimensions (364×307 ≈ 1.19:1).
+     Use a wider ratio to keep cards compact. */
+  .about__card--green .about__card-media,
+  .about__card--blue .about__card-media {
+    aspect-ratio: 364 / 307;
+    overflow: hidden;
   }
 
   .about__eyebrow {
@@ -1203,7 +1228,7 @@ figure {
   }
 
   .about__card-description {
-    width: min(100%, 264px);
+    max-width: 264px;
     font-size: 13.5px;
   }
 
@@ -1223,9 +1248,10 @@ figure {
     width: min(100%, 184px);
   }
 
+  .about__card--green .about__card-shape,
   .about__card--blue .about__card-shape {
-    top: 28px;
-    width: min(100%, 364px);
+    width: 100%;
+    top: 0;
   }
 
   .about__card--blue .about__card-graphic {
@@ -1233,11 +1259,11 @@ figure {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .about {
     grid-template-columns: 1fr;
     gap: var(--space-6);
-    padding: var(--section-pad-md) var(--space-4) calc(var(--section-pad-md) + var(--space-10));
+    padding: var(--section-pad-md) var(--space-4);
   }
 
   .about__intro,
@@ -1252,7 +1278,6 @@ figure {
   .about__description {
     width: min(100%, 30rem);
     font-size: 14px;
-    line-height: 1.12;
   }
 
   .about__cards {
@@ -1294,7 +1319,7 @@ figure {
   }
 
   .about__card-description {
-    width: min(100%, 210px);
+    max-width: 210px;
     font-size: 12px;
   }
 
