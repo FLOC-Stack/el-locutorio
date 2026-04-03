@@ -43,7 +43,7 @@ export type HomePageContent = {
 
 export const homePageContent: HomePageContent = {
   hero: {
-    title: "Con\nHarold\nCorrea",
+    title: "Con Harold\nCorrea",
     tagline: "Humor inteligente\n· Conversación incómoda\n· Comunidad real",
     featuredGuest: {
       label: "Entrevistamos a",

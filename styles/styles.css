@@ -298,6 +298,10 @@ figure {
   transform-origin: center center;
 }
 
+.hero__title-break--mobile {
+  display: none;
+}
+
 .hero__tagline {
   font-family: var(--font-display);
   font-size: 38px;
@@ -746,6 +750,10 @@ figure {
   .hero__title {
     font-size: 58px;
     transform: rotate(-2deg);
+  }
+
+  .hero__title-break--mobile {
+    display: inline;
   }
 
   .hero__tagline {

@@ -70,7 +70,9 @@ export default function HomePage() {
         </figure>
 
         <div className="hero__content">
-          <h1 className="hero__title">{renderMultilineText(hero.title)}</h1>
+          <h1 className="hero__title">
+            Con<br className="hero__title-break--mobile" /> Harold<br /> Correa
+          </h1>
           <p className="hero__tagline">{renderMultilineText(hero.tagline)}</p>
         </div>
 
