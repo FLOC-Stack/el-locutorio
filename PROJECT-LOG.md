@@ -27,6 +27,7 @@
 | 2026-04-02 | gsus   | Migrate to Next.js 16 App Router (index.html → app/page.tsx, fix asset paths, remove vercel.json static config) |
 | 2026-04-02 | codex  | Add "Qué es" section under hero, move homepage copy to typed content object, enable nav anchor to the new section |
 | 2026-04-03 | gsus   | Fix about cards: blue card z-index in front across all breakpoints, reduce overlap to ~50px so green card content stays visible |
+| 2026-04-03 | gsus   | Hero title: 2 lines on desktop ("Con Harold" / "Correa"), 3 lines on mobile via CSS-toggled br |
 
 ---
 
