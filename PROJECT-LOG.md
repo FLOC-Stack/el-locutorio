@@ -26,6 +26,7 @@
 | 2026-03-31 | javi   | Enforce `font-weight: 100` on Rubik Dirt (font-accent)      |
 | 2026-04-02 | gsus   | Migrate to Next.js 16 App Router (index.html → app/page.tsx, fix asset paths, remove vercel.json static config) |
 | 2026-04-02 | codex  | Add "Qué es" section under hero, move homepage copy to typed content object, enable nav anchor to the new section |
+| 2026-04-03 | gsus   | Fix about cards: blue card z-index in front across all breakpoints, reduce overlap to ~50px so green card content stays visible |
 
 ---
 
@@ -41,7 +42,6 @@
 
 ## In progress
 
-- Vercel deploy: pushed Next.js migration, awaiting first successful build (previous 404 was caused by `vercel.json` static config)
 - Payload CMS integration: Postgres/Neon DB setup pending
 - Desktop hero refinement pending (current focus was mobile)
 
