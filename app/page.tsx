@@ -11,7 +11,7 @@ function renderMultilineText(value: string) {
 }
 
 export default function HomePage() {
-  const { hero, about } = homePageContent;
+  const { hero, about, community } = homePageContent;
 
   return (
     <>
@@ -24,9 +24,9 @@ export default function HomePage() {
             </a>
           </li>
           <li>
-            <span className="nav__link nav__link--disabled" aria-disabled="true">
+            <a href={`#${community.id}`} className="nav__link">
               Comunidad
-            </span>
+            </a>
           </li>
         </ul>
         <a href="/" className="nav__logo-link">
@@ -155,6 +155,70 @@ export default function HomePage() {
                   <p className="about__card-description">{card.description}</p>
                 </div>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* === COMMUNITY / LA COMUNIDAD === */}
+      <section className="community" id={community.id} aria-labelledby="community-title">
+        <div className="community__bg" aria-hidden="true" />
+
+        <div className="community__header">
+          <div className="community__banner" aria-hidden="true">
+            <img
+              src="/assets/community-banner-shape.svg"
+              alt=""
+              width={532}
+              height={264}
+            />
+          </div>
+          <p className="community__eyebrow">{community.eyebrow}</p>
+        </div>
+
+        <div className="community__intro">
+          <h2 className="community__title" id="community-title">
+            {renderMultilineText(community.title)}
+          </h2>
+          <img
+            className="community__mic"
+            src="/assets/microphone.png"
+            alt="Micrófono dorado"
+            width={359}
+            height={522}
+          />
+        </div>
+
+        <p className="community__subtitle">{community.subtitle}</p>
+
+        <div className="community__steps">
+          {community.steps.map((step) => (
+            <article
+              key={step.id}
+              className={`community__poster community__poster--${step.theme}`}
+            >
+              <div className="community__poster-bg" aria-hidden="true" />
+              <img
+                className="community__poster-frame"
+                src="/assets/poster-frame.png"
+                alt=""
+                width={449}
+                height={546}
+                aria-hidden="true"
+              />
+              <span className="community__poster-number">{step.number}</span>
+              <h3 className="community__poster-title">
+                {renderMultilineText(step.title)}
+              </h3>
+              <p className="community__poster-desc">{step.description}</p>
+              <img
+                className="community__poster-sticker"
+                src={step.sticker.src}
+                alt={step.sticker.alt}
+                width={step.sticker.width}
+                height={step.sticker.height}
+                aria-hidden="true"
+              />
             </article>
           ))}
         </div>

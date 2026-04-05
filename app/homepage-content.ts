@@ -39,6 +39,25 @@ export type HomePageContent = {
       };
     }>;
   };
+  community: {
+    id: string;
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    steps: Array<{
+      id: string;
+      number: number;
+      title: string;
+      description: string;
+      theme: "yellow" | "green" | "blue" | "dark";
+      sticker: {
+        src: string;
+        alt: string;
+        width: number;
+        height: number;
+      };
+    }>;
+  };
 };
 
 export const homePageContent: HomePageContent = {
@@ -101,6 +120,70 @@ export const homePageContent: HomePageContent = {
           alt: "Zapatos colgando como gesto de barrio y comunidad",
           width: 407,
           height: 443,
+        },
+      },
+    ],
+  },
+  community: {
+    id: "comunidad",
+    eyebrow: "La Comunidad",
+    title: "Seguimos haciendo camino.\nAhora nos toca contarlo.",
+    subtitle: "El lugar donde el migrante toma el micrófono.",
+    steps: [
+      {
+        id: "step-1",
+        number: 1,
+        title: "Ves el show",
+        description:
+          "YouTube o en directo. Producción cinematográfica, conversación real.",
+        theme: "yellow",
+        sticker: {
+          src: "/assets/community-step-1-sticker.png",
+          alt: "",
+          width: 96,
+          height: 82,
+        },
+      },
+      {
+        id: "step-2",
+        number: 2,
+        title: "Te unes\na nosotros",
+        description:
+          "Entra al grupo de WhatsApp y conecta con migrantes contigo.",
+        theme: "green",
+        sticker: {
+          src: "/assets/community-step-2-sticker.png",
+          alt: "",
+          width: 79,
+          height: 87,
+        },
+      },
+      {
+        id: "step-3",
+        number: 3,
+        title: "Participas\nen vivo",
+        description:
+          "Asistes al próximo show presencial. Público real, energía viva.",
+        theme: "blue",
+        sticker: {
+          src: "/assets/community-step-3-sticker.png",
+          alt: "",
+          width: 115,
+          height: 98,
+        },
+      },
+      {
+        id: "step-4",
+        number: 4,
+        title: "Formas parte\ndel movimiento",
+        description:
+          "Tu voz amplifica el movimiento. Eres parte activa.",
+        theme: "dark",
+        sticker: {
+          src: "/assets/community-step-4-sticker.png",
+          alt: "",
+          width: 96,
+          height: 68,
         },
       },
     ],
