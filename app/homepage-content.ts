@@ -9,6 +9,16 @@ export type ShowCard = {
   cta: { label: string; href: string | null; style: "solid" | "outline" };
 };
 
+export type EpisodesSectionContent = {
+  id: string;
+  hashtags: string;
+  eyebrow: string;
+  ctaLabel: string;
+  emptyLabel: string;
+  emptyTitle: string;
+  emptyDescription: string;
+};
+
 export type HomePageContent = {
   hero: {
     title: string;
@@ -79,6 +89,7 @@ export type HomePageContent = {
       cities: string[];
     };
   };
+  episodes: EpisodesSectionContent;
 };
 
 export const homePageContent: HomePageContent = {
@@ -249,5 +260,15 @@ export const homePageContent: HomePageContent = {
       label: "PRÓXIMAMENTE EN OTRAS CIUDADES",
       cities: ["VALENCIA", "SEVILLA", "BILBAO", "ZARAGOZA"],
     },
+  },
+  episodes: {
+    id: "episodios",
+    hashtags: "#Humor #Barrio #Relatos #Familia migrante",
+    eyebrow: "episodios",
+    ctaLabel: "Ver más episodios",
+    emptyLabel: "Estreno pendiente",
+    emptyTitle: "El programa todavía no ha empezado",
+    emptyDescription:
+      "Cuando publiquemos episodios en YouTube aparecerán aquí automáticamente.",
   },
 };

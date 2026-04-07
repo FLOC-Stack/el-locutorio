@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import { homePageContent } from "./homepage-content";
 import type { HomePageContent, ShowCard } from "./homepage-content";
+import { getYouTubeEpisodes } from "../lib/youtube";
+import type { YouTubeEpisode } from "../lib/youtube";
 
 type PosterStep = HomePageContent["community"]["steps"][number];
 
@@ -113,8 +115,94 @@ function renderMultilineText(value: string) {
   ));
 }
 
-export default function HomePage() {
-  const { hero, about, community, shows } = homePageContent;
+function EpisodeFeature({
+  episode,
+  fallback,
+}: {
+  episode: YouTubeEpisode | null;
+  fallback: HomePageContent["episodes"];
+}) {
+  if (!episode) {
+    return (
+      <article className="episodes__feature episodes__feature--empty">
+        <div className="episodes__feature-media" aria-hidden="true" />
+        <div className="episodes__feature-overlay">
+          <p className="episodes__feature-label">{fallback.emptyLabel}</p>
+          <h3 className="episodes__feature-title">{fallback.emptyTitle}</h3>
+          <p className="episodes__feature-description">{fallback.emptyDescription}</p>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article className="episodes__feature">
+      {episode.thumbnailUrl ? (
+        <img
+          className="episodes__feature-media"
+          src={episode.thumbnailUrl}
+          alt={episode.title}
+          width={1280}
+          height={720}
+        />
+      ) : (
+        <div className="episodes__feature-media" aria-hidden="true" />
+      )}
+
+      <div className="episodes__feature-overlay">
+        <p className="episodes__feature-kicker">EPISODIO #1</p>
+        <h3 className="episodes__feature-title">{episode.title}</h3>
+        <p className="episodes__feature-host">CON HAROLD CORREA</p>
+        <span className="episodes__duration">
+          {episode.durationText ?? "--:--"}
+        </span>
+      </div>
+    </article>
+  );
+}
+
+function EpisodeCard({
+  episode,
+  index,
+}: {
+  episode: YouTubeEpisode | null;
+  index: number;
+}) {
+  const number = index + 2;
+
+  return (
+    <article className={`episodes__card${episode ? "" : " episodes__card--empty"}`}>
+      {episode?.thumbnailUrl ? (
+        <img
+          className="episodes__card-media"
+          src={episode.thumbnailUrl}
+          alt={episode.title}
+          width={299}
+          height={184}
+        />
+      ) : (
+        <div className="episodes__card-media" aria-hidden="true" />
+      )}
+
+      <div className="episodes__card-overlay">
+        <p className="episodes__card-kicker">{`EPISODIO #${number}`}</p>
+        <h3 className="episodes__card-title">
+          {episode?.title ?? "Próximamente"}
+        </h3>
+        <p className="episodes__card-host">CON HAROLD CORREA</p>
+        <span className="episodes__duration episodes__duration--small">
+          {episode?.durationText ?? "--:--"}
+        </span>
+      </div>
+    </article>
+  );
+}
+
+export default async function HomePage() {
+  const { hero, about, community, shows, episodes } = homePageContent;
+  const youtubeEpisodes = await getYouTubeEpisodes(4);
+  const featuredEpisode = youtubeEpisodes.episodes[0] ?? null;
+  const restEpisodes = Array.from({ length: 3 }, (_, index) => youtubeEpisodes.episodes[index + 1] ?? null);
 
   return (
     <>
@@ -148,9 +236,9 @@ export default function HomePage() {
             </a>
           </li>
           <li>
-            <span className="nav__link nav__link--disabled" aria-disabled="true">
+            <a href={`#${episodes.id}`} className="nav__link">
               Episodios
-            </span>
+            </a>
           </li>
         </ul>
         <span className="nav__cta nav__cta--disabled" aria-disabled="true">
@@ -324,6 +412,45 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* === EPISODIOS === */}
+      <section className="episodes" id={episodes.id} aria-labelledby="episodes-title">
+        <div className="episodes__texture" aria-hidden="true" />
+
+        <header className="episodes__header">
+          <p className="episodes__eyebrow" id="episodes-title">{episodes.eyebrow}</p>
+          <p className="episodes__hashtags">{episodes.hashtags}</p>
+        </header>
+
+        <div className="episodes__body">
+          <div className="episodes__feature-wrap">
+            <EpisodeFeature episode={featuredEpisode} fallback={episodes} />
+          </div>
+
+          <aside className="episodes__sidebar" aria-labelledby="episodes-title">
+            <div className="episodes__grid">
+              {restEpisodes.map((episode, index) => (
+                <EpisodeCard key={episode?.id ?? `placeholder-${index}`} episode={episode} index={index} />
+              ))}
+            </div>
+
+            {youtubeEpisodes.channelUrl ? (
+              <a
+                href={youtubeEpisodes.channelUrl}
+                className="episodes__cta"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {episodes.ctaLabel}
+              </a>
+            ) : (
+              <span className="episodes__cta episodes__cta--disabled" aria-disabled="true">
+                {episodes.ctaLabel}
+              </span>
+            )}
+          </aside>
         </div>
       </section>
     </>
