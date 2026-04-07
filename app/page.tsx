@@ -1,5 +1,44 @@
 import { Fragment } from "react";
 import { homePageContent } from "./homepage-content";
+import type { HomePageContent } from "./homepage-content";
+
+type PosterStep = HomePageContent["community"]["steps"][number];
+
+const frameByTheme: Record<string, string> = {
+  yellow: "/assets/frame_vector_amarillo.svg",
+  green:  "/assets/frame_vector_verde.svg",
+  blue:   "/assets/frame_vector_azul.svg",
+  dark:   "/assets/frame_vector.svg",
+};
+
+function PosterCard({ step }: { step: PosterStep }) {
+  return (
+    <article className={`community__poster community__poster--${step.theme}`}>
+      <div className="community__poster-bg" aria-hidden="true" />
+      <img
+        className="community__poster-frame"
+        src={frameByTheme[step.theme] ?? "/assets/frame_vector.svg"}
+        alt=""
+        width={468}
+        height={567}
+        aria-hidden="true"
+      />
+      <span className="community__poster-number">{step.number}</span>
+      <h3 className="community__poster-title">
+        {renderMultilineText(step.title)}
+      </h3>
+      <p className="community__poster-desc">{step.description}</p>
+      <img
+        className="community__poster-sticker"
+        src={step.sticker.src}
+        alt={step.sticker.alt}
+        width={step.sticker.width}
+        height={step.sticker.height}
+        aria-hidden="true"
+      />
+    </article>
+  );
+}
 
 function renderMultilineText(value: string) {
   return value.split("\n").map((line, index, lines) => (
@@ -177,49 +216,24 @@ export default function HomePage() {
         </div>
 
         <div className="community__intro">
-          <h2 className="community__title" id="community-title">
-            {renderMultilineText(community.title)}
-          </h2>
+          <div className="community__text">
+            <h2 className="community__title" id="community-title">
+              {renderMultilineText(community.title)}
+            </h2>
+            <p className="community__subtitle">{community.subtitle}</p>
+          </div>
           <img
             className="community__mic"
             src="/assets/microphone.png"
             alt="Micrófono dorado"
-            width={359}
-            height={522}
+            width={360}
+            height={523}
           />
         </div>
 
-        <p className="community__subtitle">{community.subtitle}</p>
-
         <div className="community__steps">
           {community.steps.map((step) => (
-            <article
-              key={step.id}
-              className={`community__poster community__poster--${step.theme}`}
-            >
-              <div className="community__poster-bg" aria-hidden="true" />
-              <img
-                className="community__poster-frame"
-                src="/assets/poster-frame.png"
-                alt=""
-                width={449}
-                height={546}
-                aria-hidden="true"
-              />
-              <span className="community__poster-number">{step.number}</span>
-              <h3 className="community__poster-title">
-                {renderMultilineText(step.title)}
-              </h3>
-              <p className="community__poster-desc">{step.description}</p>
-              <img
-                className="community__poster-sticker"
-                src={step.sticker.src}
-                alt={step.sticker.alt}
-                width={step.sticker.width}
-                height={step.sticker.height}
-                aria-hidden="true"
-              />
-            </article>
+            <PosterCard key={step.id} step={step} />
           ))}
         </div>
       </section>
