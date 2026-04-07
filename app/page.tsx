@@ -199,7 +199,7 @@ function EpisodeCard({
 }
 
 export default async function HomePage() {
-  const { hero, about, community, shows, episodes } = homePageContent;
+  const { hero, about, community, shows, episodes, whyExists, footer } = homePageContent;
   const youtubeEpisodes = await getYouTubeEpisodes(4);
   const featuredEpisode = youtubeEpisodes.episodes[0] ?? null;
   const restEpisodes = Array.from({ length: 3 }, (_, index) => youtubeEpisodes.episodes[index + 1] ?? null);
@@ -453,6 +453,88 @@ export default async function HomePage() {
           </aside>
         </div>
       </section>
+
+      {/* === POR QUÉ EXISTIMOS === */}
+      <section className="why" id={whyExists.id} aria-labelledby="why-title">
+        <header className="why__header">
+          <p className="why__eyebrow">{whyExists.eyebrow}</p>
+          <h2 className="why__title" id="why-title">
+            {renderMultilineText(whyExists.title)}
+          </h2>
+          <p className="why__description">{whyExists.description}</p>
+        </header>
+
+        <div className="why__body">
+          <div className="why__claims" aria-label="Manifiesto">
+            {whyExists.claims.map((claim) => (
+              <p key={claim} className="why__claim">
+                {renderMultilineText(claim)}
+              </p>
+            ))}
+          </div>
+
+          <figure className="why__image">
+            <img
+              src={whyExists.image.src}
+              alt={whyExists.image.alt}
+              width={whyExists.image.width}
+              height={whyExists.image.height}
+            />
+          </figure>
+        </div>
+      </section>
+
+      {/* === FOOTER === */}
+      <footer className="site-footer" aria-labelledby="site-footer-title">
+        <div className="site-footer__inner">
+          <img
+            className="site-footer__logo"
+            src="/assets/logo_verde.svg"
+            alt="El Locutorio"
+            width={1131}
+            height={440}
+          />
+
+          <p className="site-footer__tagline" id="site-footer-title">
+            {footer.tagline}
+          </p>
+
+          <div className="site-footer__socials" aria-label="Redes sociales">
+            {footer.socials.map((social) => (
+              <a
+                key={social.id}
+                href={social.href}
+                className={`site-footer__social site-footer__social--${social.id}`}
+                aria-label={social.label}
+              >
+                <img
+                  src={social.icon.src}
+                  alt={social.icon.alt}
+                  width={social.icon.width}
+                  height={social.icon.height}
+                  aria-hidden="true"
+                />
+              </a>
+            ))}
+          </div>
+
+          <div className="site-footer__meta">
+            <div className="site-footer__line" aria-hidden="true" />
+            <div className="site-footer__bottom">
+              <p className="site-footer__notice">
+                <span aria-hidden="true">©</span>
+                <span>{footer.legalNotice}</span>
+              </p>
+
+              <p className="site-footer__legal">
+                <a href="#">{footer.privacyLabel}</a>
+                <span aria-hidden="true">-</span>
+                <a href="#">{footer.termsLabel}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

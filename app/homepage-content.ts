@@ -19,6 +19,38 @@ export type EpisodesSectionContent = {
   emptyDescription: string;
 };
 
+export type WhyExistsSectionContent = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  claims: string[];
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+};
+
+export type FooterContent = {
+  tagline: string;
+  socials: Array<{
+    id: string;
+    label: string;
+    href: string;
+    icon: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
+    };
+  }>;
+  legalNotice: string;
+  privacyLabel: string;
+  termsLabel: string;
+};
+
 export type HomePageContent = {
   hero: {
     title: string;
@@ -90,6 +122,8 @@ export type HomePageContent = {
     };
   };
   episodes: EpisodesSectionContent;
+  whyExists: WhyExistsSectionContent;
+  footer: FooterContent;
 };
 
 export const homePageContent: HomePageContent = {
@@ -270,5 +304,64 @@ export const homePageContent: HomePageContent = {
     emptyTitle: "El programa todavía no ha empezado",
     emptyDescription:
       "Cuando publiquemos episodios en YouTube aparecerán aquí automáticamente.",
+  },
+  whyExists: {
+    id: "por-que-existimos",
+    eyebrow: "Por qué existimos",
+    title: "La nueva generación migrante\nno está esperando permiso.",
+    description:
+      "Durante años nos contaron una historia equivocada. La realidad es otra: somos quienes construimos negocios donde nadie invertía, quienes conectamos continentes, quienes enviamos dinero a casa mientras construimos futuro aquí.",
+    claims: [
+      "Constructora\nde empresas.",
+      "Constructora\nde comunidades.",
+      "Constructora\nde una nueva economía.",
+    ],
+    image: {
+      src: "/assets/why-exist-portrait.png",
+      alt: "Retrato editorial de una joven migrante",
+      width: 1413,
+      height: 1907,
+    },
+  },
+  footer: {
+    tagline: "Donde Empieza el movimiento",
+    socials: [
+      {
+        id: "x",
+        label: "X",
+        href: "#",
+        icon: {
+          src: "/assets/x.png",
+          alt: "",
+          width: 243,
+          height: 82,
+        },
+      },
+      {
+        id: "linkedin",
+        label: "LinkedIn",
+        href: "#",
+        icon: {
+          src: "/assets/linkedin.png",
+          alt: "",
+          width: 221,
+          height: 81,
+        },
+      },
+      {
+        id: "youtube",
+        label: "YouTube",
+        href: "#",
+        icon: {
+          src: "/assets/youtube.png",
+          alt: "",
+          width: 76,
+          height: 74,
+        },
+      },
+    ],
+    legalNotice: "El Locutorio 2026. Todos los derechos reservados",
+    privacyLabel: "Política de privacidad",
+    termsLabel: "Términos y condiciones",
   },
 };
