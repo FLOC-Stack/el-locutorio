@@ -1,8 +1,45 @@
 import { Fragment } from "react";
 import { homePageContent } from "./homepage-content";
-import type { HomePageContent } from "./homepage-content";
+import type { HomePageContent, ShowCard } from "./homepage-content";
 
 type PosterStep = HomePageContent["community"]["steps"][number];
+
+function ShowCardComponent({ card }: { card: ShowCard }) {
+  const isAvailable = card.cta.href !== null;
+  return (
+    <div className="shows__card-wrap">
+      <article className={`shows__card shows__card--${card.theme}${card.photo ? "" : " shows__card--no-photo"}`}>
+        {card.photo && (
+          <div className="shows__card-photo">
+            <img
+              src={card.photo.src}
+              alt={card.photo.alt}
+              width={card.photo.width}
+              height={card.photo.height}
+            />
+          </div>
+        )}
+        <div className="shows__card-info">
+          <h3 className="shows__card-city">{card.city}</h3>
+          <p className="shows__card-meta">
+            <span className="shows__card-date">{card.date}</span>
+            <span className="shows__card-time">{card.time}</span>
+          </p>
+          <p className="shows__card-capacity">{card.capacity}</p>
+        </div>
+      </article>
+      {isAvailable ? (
+        <a href={card.cta.href!} className="shows__card-cta">
+          {card.cta.label}
+        </a>
+      ) : (
+        <span className="shows__card-cta shows__card-cta--soon" aria-disabled="true">
+          {card.cta.label}
+        </span>
+      )}
+    </div>
+  );
+}
 
 const frameByTheme: Record<string, string> = {
   yellow: "/assets/frame_vector_amarillo.svg",
@@ -50,7 +87,7 @@ function renderMultilineText(value: string) {
 }
 
 export default function HomePage() {
-  const { hero, about, community } = homePageContent;
+  const { hero, about, community, shows } = homePageContent;
 
   return (
     <>
@@ -79,9 +116,9 @@ export default function HomePage() {
         </a>
         <ul className="nav__links nav__links--right">
           <li>
-            <span className="nav__link nav__link--disabled" aria-disabled="true">
+            <a href={`#${shows.id}`} className="nav__link">
               Shows en vivo
-            </span>
+            </a>
           </li>
           <li>
             <span className="nav__link nav__link--disabled" aria-disabled="true">
@@ -235,6 +272,31 @@ export default function HomePage() {
           {community.steps.map((step) => (
             <PosterCard key={step.id} step={step} />
           ))}
+        </div>
+      </section>
+
+      {/* === SHOWS EN VIVO === */}
+      <section className="shows" id={shows.id} aria-labelledby="shows-title">
+        <header className="shows__header">
+          <p className="shows__eyebrow">{shows.eyebrow}</p>
+          <h2 className="shows__title" id="shows-title">{shows.title}</h2>
+        </header>
+
+        <div className="shows__body">
+          <div className="shows__cards">
+            {shows.cards.map((card) => (
+              <ShowCardComponent key={card.id} card={card} />
+            ))}
+          </div>
+
+          <div className="shows__upcoming">
+            <p className="shows__upcoming-label">{shows.upcoming.label}</p>
+            <ul className="shows__upcoming-cities">
+              {shows.upcoming.cities.map((city) => (
+                <li key={city}>{city}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
     </>

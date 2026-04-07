@@ -1,3 +1,14 @@
+export type ShowCard = {
+  id: string;
+  city: string;
+  date: string;
+  time: string;
+  capacity: string;
+  theme: "blue" | "yellow";
+  photo: { src: string; alt: string; width: number; height: number } | null;
+  cta: { label: string; href: string | null };
+};
+
 export type HomePageContent = {
   hero: {
     title: string;
@@ -57,6 +68,16 @@ export type HomePageContent = {
         height: number;
       };
     }>;
+  };
+  shows: {
+    id: string;
+    eyebrow: string;
+    title: string;
+    cards: ShowCard[];
+    upcoming: {
+      label: string;
+      cities: string[];
+    };
   };
 };
 
@@ -187,5 +208,41 @@ export const homePageContent: HomePageContent = {
         },
       },
     ],
+  },
+  shows: {
+    id: "shows-en-vivo",
+    eyebrow: "Show en vivo",
+    title: "TE ESPERAMOS EN EL PRÓXIMO SHOW",
+    cards: [
+      {
+        id: "madrid",
+        city: "MADRID",
+        date: "22 MARZO 2026",
+        time: "20H",
+        capacity: "AFORO → 300 PERSONAS",
+        theme: "blue",
+        photo: null,
+        cta: { label: "RESERVA TU PLAZA", href: "#" },
+      },
+      {
+        id: "barcelona",
+        city: "BARCELONA",
+        date: "13 AGOSTO 2026",
+        time: "20H",
+        capacity: "AFORO → 200 PERSONAS",
+        theme: "yellow",
+        photo: {
+          src: "/assets/show-live-card-barcelona-alt.png",
+          alt: "Sagrada Família de Barcelona",
+          width: 864,
+          height: 1215,
+        },
+        cta: { label: "MUY PRONTO", href: null },
+      },
+    ],
+    upcoming: {
+      label: "PRÓXIMAMENTE EN OTRAS CIUDADES",
+      cities: ["VALENCIA", "SEVILLA", "BILBAO", "ZARAGOZA"],
+    },
   },
 };
