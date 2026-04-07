@@ -4,39 +4,66 @@ import type { HomePageContent, ShowCard } from "./homepage-content";
 
 type PosterStep = HomePageContent["community"]["steps"][number];
 
+const showShapeByTheme: Record<ShowCard["theme"], string> = {
+  blue: "/assets/show-live-card-shape-blue.svg",
+  yellow: "/assets/show-live-card-shape-yellow.svg",
+};
+
 function ShowCardComponent({ card }: { card: ShowCard }) {
   const isAvailable = card.cta.href !== null;
+
   return (
-    <div className="shows__card-wrap">
-      <article className={`shows__card shows__card--${card.theme}${card.photo ? "" : " shows__card--no-photo"}`}>
-        {card.photo && (
-          <div className="shows__card-photo">
-            <img
-              src={card.photo.src}
-              alt={card.photo.alt}
-              width={card.photo.width}
-              height={card.photo.height}
-            />
+    <div className={`shows__card-wrap shows__card-wrap--${card.theme}`}>
+      <div className="shows__card-stage">
+        <article className={`shows__card shows__card--${card.theme}`} aria-labelledby={`shows-card-title-${card.id}`}>
+          {card.photo ? (
+            <div className="shows__card-photo">
+              <img
+                src={card.photo.src}
+                alt={card.photo.alt}
+                width={card.photo.width}
+                height={card.photo.height}
+              />
+            </div>
+          ) : null}
+
+          <img
+            className="shows__card-shape"
+            src={showShapeByTheme[card.theme]}
+            alt=""
+            width={490}
+            height={518}
+            aria-hidden="true"
+          />
+
+          <div className="shows__card-info">
+            <h3 className="shows__card-city" id={`shows-card-title-${card.id}`}>
+              {card.city}
+            </h3>
+            <p className="shows__card-meta">
+              <span className="shows__card-date">{card.date}</span>
+              <span className="shows__card-time">{card.time}</span>
+            </p>
+            <p className="shows__card-capacity">{card.capacity}</p>
           </div>
+        </article>
+
+        {isAvailable ? (
+          <a
+            href={card.cta.href!}
+            className={`shows__card-cta shows__card-cta--${card.cta.style}`}
+          >
+            {card.cta.label}
+          </a>
+        ) : (
+          <span
+            className={`shows__card-cta shows__card-cta--${card.cta.style}`}
+            aria-disabled="true"
+          >
+            {card.cta.label}
+          </span>
         )}
-        <div className="shows__card-info">
-          <h3 className="shows__card-city">{card.city}</h3>
-          <p className="shows__card-meta">
-            <span className="shows__card-date">{card.date}</span>
-            <span className="shows__card-time">{card.time}</span>
-          </p>
-          <p className="shows__card-capacity">{card.capacity}</p>
-        </div>
-      </article>
-      {isAvailable ? (
-        <a href={card.cta.href!} className="shows__card-cta">
-          {card.cta.label}
-        </a>
-      ) : (
-        <span className="shows__card-cta shows__card-cta--soon" aria-disabled="true">
-          {card.cta.label}
-        </span>
-      )}
+      </div>
     </div>
   );
 }

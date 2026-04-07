@@ -6,7 +6,7 @@ export type ShowCard = {
   capacity: string;
   theme: "blue" | "yellow";
   photo: { src: string; alt: string; width: number; height: number } | null;
-  cta: { label: string; href: string | null };
+  cta: { label: string; href: string | null; style: "solid" | "outline" };
 };
 
 export type HomePageContent = {
@@ -221,8 +221,13 @@ export const homePageContent: HomePageContent = {
         time: "20H",
         capacity: "AFORO → 300 PERSONAS",
         theme: "blue",
-        photo: null,
-        cta: { label: "RESERVA TU PLAZA", href: "#" },
+        photo: {
+          src: "/assets/show-live-card-madrid-building.png",
+          alt: "Edificio Capitol de Madrid ilustrado",
+          width: 832,
+          height: 1276,
+        },
+        cta: { label: "RESERVA TU PLAZA", href: "#", style: "solid" },
       },
       {
         id: "barcelona",
@@ -232,12 +237,12 @@ export const homePageContent: HomePageContent = {
         capacity: "AFORO → 200 PERSONAS",
         theme: "yellow",
         photo: {
-          src: "/assets/show-live-card-barcelona-alt.png",
-          alt: "Sagrada Família de Barcelona",
+          src: "/assets/show-live-card-barcelona-top.png",
+          alt: "Sagrada Família de Barcelona ilustrada",
           width: 864,
           height: 1215,
         },
-        cta: { label: "MUY PRONTO", href: null },
+        cta: { label: "MUY PRONTO", href: null, style: "outline" },
       },
     ],
     upcoming: {
