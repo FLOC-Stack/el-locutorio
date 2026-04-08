@@ -214,6 +214,7 @@ figure {
 .nav--compact {
   padding-top: var(--space-3);
   padding-bottom: var(--space-3);
+  background: var(--color-bg);
 }
 
 .nav--hidden {
