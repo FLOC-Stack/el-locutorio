@@ -3,6 +3,7 @@ import { homePageContent } from "./homepage-content";
 import type { HomePageContent, ShowCard } from "./homepage-content";
 import { getYouTubeEpisodes } from "../lib/youtube";
 import type { YouTubeEpisode } from "../lib/youtube";
+import { SiteNav } from "./site-nav";
 
 type PosterStep = HomePageContent["community"]["steps"][number];
 
@@ -205,49 +206,16 @@ export default async function HomePage() {
   const restEpisodes = Array.from({ length: 3 }, (_, index) => youtubeEpisodes.episodes[index + 1] ?? null);
 
   return (
-    <>
-      {/* === NAV === */}
-      <nav className="nav" aria-label="Navegacion principal">
-        <ul className="nav__links nav__links--left">
-          <li>
-            <a href={`#${about.id}`} className="nav__link">
-              Qué es
-            </a>
-          </li>
-          <li>
-            <a href={`#${community.id}`} className="nav__link">
-              Comunidad
-            </a>
-          </li>
-        </ul>
-        <a href="/" className="nav__logo-link">
-          <img
-            className="nav__logo"
-            src="/assets/Logo_El_Locutorio.svg"
-            alt="El Locutorio"
-            width={1131}
-            height={440}
-          />
-        </a>
-        <ul className="nav__links nav__links--right">
-          <li>
-            <a href={`#${shows.id}`} className="nav__link">
-              Shows en vivo
-            </a>
-          </li>
-          <li>
-            <a href={`#${episodes.id}`} className="nav__link">
-              Episodios
-            </a>
-          </li>
-        </ul>
-        <span className="nav__cta nav__cta--disabled" aria-disabled="true">
-          Unete
-        </span>
-      </nav>
+    <div className="page-shell">
+      <SiteNav
+        aboutId={about.id}
+        communityId={community.id}
+        showsId={shows.id}
+        episodesId={episodes.id}
+      />
 
       {/* === HERO === */}
-      <section className="hero">
+      <section className="hero" id="hero">
         <div className="hero__shape-blue" />
         <div className="hero__shape-red" />
 
@@ -535,6 +503,6 @@ export default async function HomePage() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

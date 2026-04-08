@@ -76,6 +76,11 @@
   --stroke-display-sm: 1px;
   --shadow-display:    6px 6px 0 var(--color-brand-yellow);
   --shadow-display-xs: 3px 3px 0 var(--color-brand-yellow);
+  --vampiro-stroke-width: 1.5px;
+  --vampiro-shadow-x: 5px;
+  --vampiro-shadow-y: 5px;
+  --vampiro-outline-color: var(--color-brand-yellow);
+  --vampiro-shadow-color: var(--color-brand-yellow);
   --shadow-hard:       4px 4px 0 rgba(26, 26, 26, 0.16);
 
   /* --- Motion --- */
