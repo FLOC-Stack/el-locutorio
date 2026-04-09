@@ -66,6 +66,21 @@
   --space-24:  6rem;       /* 96px */
   --space-32:  8rem;       /* 128px */
 
+  /* --- Responsive system ---
+     Base desktop reference: 1920px
+     Breakpoints: 1440px / 1024px / 768px / 390px
+  */
+  --page-max-width: 1920px;
+
+  /* --- Layout gutters --- */
+  --page-gutter: 2rem;
+  --shell-copy: 903px;
+  --shell-section: 1200px;
+  --shell-grid: 960px;
+  --shell-headline: 1307px;
+  --shell-wide: 1720px;
+  --shell-footer: 1824px;
+
   /* --- Section spacing (clamp, escala entre breakpoints) --- */
   --section-pad-sm: clamp(3.5rem, 2.8838rem + 2.6291vw, 5.25rem);
   --section-pad-md: clamp(5rem, 4.2077rem + 3.3803vw, 7.25rem);
@@ -94,4 +109,42 @@
   --ambient-orange: rgba(255, 77, 19, 0.14);
   --ambient-blue:   rgba(58, 150, 255, 0.15);
   --ambient-yellow: rgba(253, 251, 94, 0.16);
+
+  /* --- Section heading system --- */
+  --section-eyebrow-size: 52px;
+  --section-title-size: 72px;
+}
+
+@media (max-width: 1440px) {
+  :root {
+    --section-eyebrow-size: 44px;
+    --section-title-size: 64px;
+    --page-gutter: 1.5rem;
+    --shell-section: 1120px;
+    --shell-wide: 1560px;
+    --shell-footer: 1680px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-eyebrow-size: 40px;
+    --section-title-size: 48px;
+    --shell-section: 100%;
+    --shell-grid: 100%;
+    --shell-headline: 100%;
+    --shell-wide: 100%;
+    --shell-footer: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  :root {
+    --section-eyebrow-size: 26px;
+    --section-title-size: 32px;
+    --page-gutter: 1rem;
+    --vampiro-stroke-width: 0.9px;
+    --vampiro-shadow-x: 2px;
+    --vampiro-shadow-y: 2px;
+  }
 }
