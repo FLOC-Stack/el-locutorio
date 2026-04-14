@@ -140,7 +140,7 @@
 
 @media (max-width: 390px) {
   :root {
-    --section-eyebrow-size: 26px;
+    --section-eyebrow-size: 28px;
     --section-title-size: 32px;
     --page-gutter: 1rem;
     --vampiro-stroke-width: 0.9px;
