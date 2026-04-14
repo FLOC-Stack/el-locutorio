@@ -276,7 +276,7 @@ export default async function HomePage() {
 
       {/* === ABOUT / QUE ES === */}
       <section className="about" id={about.id} aria-labelledby="about-title">
-        <div className="about__intro">
+        <div className="about__intro shell-copy">
           <p className="about__eyebrow">{about.eyebrow}</p>
           <h2 className="about__title" id="about-title">
             {renderMultilineText(about.title)}
@@ -335,7 +335,7 @@ export default async function HomePage() {
           <p className="community__eyebrow">{community.eyebrow}</p>
         </div>
 
-        <div className="community__intro">
+        <div className="community__intro shell-section">
           <div className="community__text">
             <h2 className="community__title" id="community-title">
               {renderMultilineText(community.title)}
@@ -351,7 +351,7 @@ export default async function HomePage() {
           />
         </div>
 
-        <div className="community__steps">
+        <div className="community__steps shell-grid">
           {community.steps.map((step) => (
             <PosterCard key={step.id} step={step} />
           ))}
@@ -360,12 +360,12 @@ export default async function HomePage() {
 
       {/* === SHOWS EN VIVO === */}
       <section className="shows" id={shows.id} aria-labelledby="shows-title">
-        <header className="shows__header">
+        <header className="shows__header shell-copy">
           <p className="shows__eyebrow">{shows.eyebrow}</p>
           <h2 className="shows__title" id="shows-title">{shows.title}</h2>
         </header>
 
-        <div className="shows__body">
+        <div className="shows__body shell-wide">
           <div className="shows__cards">
             {shows.cards.map((card) => (
               <ShowCardComponent key={card.id} card={card} />
@@ -387,12 +387,12 @@ export default async function HomePage() {
       <section className="episodes" id={episodes.id} aria-labelledby="episodes-title">
         <div className="episodes__texture" aria-hidden="true" />
 
-        <header className="episodes__header">
+        <header className="episodes__header shell-wide">
           <p className="episodes__eyebrow" id="episodes-title">{episodes.eyebrow}</p>
-          <p className="episodes__hashtags">{episodes.hashtags}</p>
+          <p className="episodes__hashtags shell-headline">{episodes.hashtags}</p>
         </header>
 
-        <div className="episodes__body">
+        <div className="episodes__body shell-wide">
           <div className="episodes__feature-wrap">
             <EpisodeFeature episode={featuredEpisode} fallback={episodes} />
           </div>
@@ -424,7 +424,7 @@ export default async function HomePage() {
 
       {/* === POR QUÉ EXISTIMOS === */}
       <section className="why" id={whyExists.id} aria-labelledby="why-title">
-        <header className="why__header">
+        <header className="why__header shell-wide">
           <p className="why__eyebrow">{whyExists.eyebrow}</p>
           <h2 className="why__title" id="why-title">
             {renderMultilineText(whyExists.title)}
@@ -432,29 +432,31 @@ export default async function HomePage() {
           <p className="why__description">{whyExists.description}</p>
         </header>
 
-        <div className="why__body">
-          <div className="why__claims" aria-label="Manifiesto">
-            {whyExists.claims.map((claim) => (
-              <p key={claim} className="why__claim">
-                {renderMultilineText(claim)}
-              </p>
-            ))}
-          </div>
+        <div className="why__body shell-wide">
+          <div className="why__visual">
+            <div className="why__claims" aria-label="Manifiesto">
+              {whyExists.claims.map((claim) => (
+                <p key={claim} className="why__claim">
+                  {renderMultilineText(claim)}
+                </p>
+              ))}
+            </div>
 
-          <figure className="why__image">
-            <img
-              src={whyExists.image.src}
-              alt={whyExists.image.alt}
-              width={whyExists.image.width}
-              height={whyExists.image.height}
-            />
-          </figure>
+            <figure className="why__image">
+              <img
+                src={whyExists.image.src}
+                alt={whyExists.image.alt}
+                width={whyExists.image.width}
+                height={whyExists.image.height}
+              />
+            </figure>
+          </div>
         </div>
       </section>
 
       {/* === FOOTER === */}
       <footer className="site-footer" aria-labelledby="site-footer-title">
-        <div className="site-footer__inner">
+        <div className="site-footer__inner shell-footer">
           <img
             className="site-footer__logo"
             src="/assets/logo_verde.svg"

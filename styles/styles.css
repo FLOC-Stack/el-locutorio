@@ -275,7 +275,7 @@ figure {
   transform: translateY(-50%);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .nav {
     padding: var(--space-3) var(--page-gutter);
     grid-template-columns: auto;
@@ -305,7 +305,7 @@ figure {
   display: grid;
   grid-template-columns: 1fr 1.5fr 1.5fr 1fr 1.5fr 1.5fr 1fr 0.8fr;
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr);
-  height: 100vh;
+  min-height: 100svh;
   background: var(--color-bg);
   overflow: visible;
   position: relative;
@@ -645,8 +645,8 @@ figure {
 
 @media (max-width: 1024px) {
   .hero__portrait img {
-    width: 230px;
-    height: 340px;
+    width: 207px;
+    height: 306px;
   }
 
   .hero__content {
@@ -701,21 +701,54 @@ figure {
   }
 
   .hero__shape-red {
-    width: 300px;
-    height: 252px;
-    background-size: 300px 252px;
+    width: 270px;
+    height: 227px;
+    background-size: 270px 227px;
   }
 
   .hero__phone img {
     width: 180px;
     height: 443px;
   }
+
+  .hero__cta-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-family: var(--font-condensed);
+    font-size: 24px;
+    text-transform: uppercase;
+    color: var(--color-bg);
+    background: var(--color-brand-green);
+    border: 4px solid var(--color-brand-green);
+    padding: var(--space-3) var(--space-8);
+    transition: transform var(--motion-fast), box-shadow var(--motion-fast);
+  }
+
+  .hero__cta-bottom:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .hero__cta-bottom:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .nav__cta {
+    display: none;
+  }
 }
 
 
 /* --- Mobile (768px) --- */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero {
     display: flex;
     flex-direction: column;
@@ -977,11 +1010,11 @@ figure {
 }
 
 .about__card--green {
-  z-index: 1;
+  z-index: 2;
 }
 
 .about__card--blue {
-  z-index: 2;
+  z-index: 1;
 }
 
 .about__card--green {
@@ -1056,8 +1089,11 @@ figure {
 }
 
 .about__card-title {
+  --vampiro-stroke-width: 1.2px;
+  --vampiro-shadow-x: 3px;
+  --vampiro-shadow-y: 3px;
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: 36px;
   line-height: 0.84;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -1068,10 +1104,14 @@ figure {
   color: var(--color-brand-green);
 }
 
-.about__card--blue .about__card-title {
-  max-width: 273.71px;
-  color: var(--color-brand-blue);
-}
+  .about__card--blue .about__card-title {
+    max-width: 273.71px;
+    color: var(--color-brand-blue);
+  }
+
+  .about__card--blue .about__card-description {
+    max-width: 248px;
+  }
 
 .about__card-description {
   max-width: 351.75px;
@@ -1139,7 +1179,7 @@ figure {
   }
 
   .about__card--blue {
-    right: -48px;
+    right: -60px;
     top: -12px;
     margin: 0;
   }
@@ -1161,7 +1201,7 @@ figure {
   }
 
   .about__card--blue {
-    right: -50px;
+    right: -62px;
     top: -24px;
   }
 }
@@ -1181,7 +1221,7 @@ figure {
   }
 
   .about__card-title {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .about__card-description {
@@ -1207,7 +1247,7 @@ figure {
 
   .about__card--blue .about__card-shape {
     top: 32px;
-    width: min(100%, 432px);
+    width: min(100%, 485.41px);
   }
 
   .about__card--blue .about__card-graphic {
@@ -1220,6 +1260,7 @@ figure {
     padding-top: 42px;
     padding-right: var(--page-gutter);
     padding-left: var(--page-gutter);
+    padding-bottom: calc(var(--section-pad-lg) + 48px);
   }
 
   .about__intro {
@@ -1229,25 +1270,28 @@ figure {
   }
 
   .about__cards {
+    width: min(100%, 48rem);
+    min-height: 31rem;
+    margin-inline: auto;
     gap: 0.5rem;
     align-items: center;
   }
 
   .about__card--green {
-    margin-right: -16px;
+    margin-right: -10px;
   }
 
   .about__card--blue {
-    margin-left: -16px;
+    margin-left: -10px;
   }
 
   /* Normalize both cards to the same aspect-ratio at grid sizes.
-     Figma 1080px uses identical shape dimensions (364×307 ≈ 1.19:1).
-     Use a wider ratio to keep cards compact. */
+     Keep them aligned, but give them more height so the blue copy stays
+     inside the panel at tablet widths. */
   .about__card--green .about__card-media,
   .about__card--blue .about__card-media {
-    aspect-ratio: 364 / 307;
-    overflow: hidden;
+    aspect-ratio: 364 / 324;
+    overflow: visible;
   }
 
   .about__description {
@@ -1259,12 +1303,12 @@ figure {
   }
 
   .about__card-title {
-    font-size: 27px;
+    font-size: 28px;
   }
 
   .about__card-description {
-    max-width: 264px;
-    font-size: 13.5px;
+    max-width: 276px;
+    font-size: 14px;
   }
 
   .about__card--green .about__card-copy {
@@ -1273,14 +1317,14 @@ figure {
   }
 
   .about__card--blue .about__card-copy {
-    left: 31px;
-    top: 177px;
+    left: 40px;
+    top: 108px;
   }
 
   .about__card--green .about__card-graphic {
     top: 89px;
     right: 10px;
-    width: min(100%, 184px);
+    width: min(100%, 196px);
   }
 
   .about__card--green .about__card-shape,
@@ -1290,11 +1334,13 @@ figure {
   }
 
   .about__card--blue .about__card-graphic {
-    width: min(100%, 229px);
+    right: -24px;
+    top: -28px;
+    width: min(100%, 160px);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .about {
     grid-template-columns: 1fr;
     gap: var(--space-6);
@@ -1355,7 +1401,7 @@ figure {
   }
 
   .about__card-title {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .about__title {
@@ -1719,8 +1765,17 @@ figure {
    ======================================== */
 
 @media (max-width: 1440px) {
+  .community__text {
+    transform: translateY(18px);
+  }
+
   .community__mic {
-    width: 160px;
+    width: 240px;
+    margin-left: -70px;
+  }
+
+  .community__steps {
+    margin-top: calc(var(--space-12) + 32px);
   }
 
   .community__poster-number {
@@ -1738,23 +1793,70 @@ figure {
 
 @media (max-width: 1024px) {
   .community {
-    padding: 0 var(--page-gutter) var(--section-pad-md);
+    padding: 72px var(--page-gutter) var(--section-pad-md);
   }
 
-  .community__banner {
-    width: 280px;
+  .community__bg {
+    top: 88px;
+    left: -160px;
+    right: -160px;
+    bottom: -40px;
+  }
+
+  .community__header {
+    width: 420px;
+    height: auto;
+    aspect-ratio: 532 / 264;
+    margin-top: -120px;
+    margin-bottom: -44px;
+  }
+
+  .community__intro {
+    width: min(100%, 44rem);
+    margin-inline: auto;
+  }
+
+  .community__text {
+    max-width: 34rem;
+    transform: translateY(20px);
   }
 
   .community__mic {
-    width: 130px;
+    width: 190px;
+    margin-left: -60px;
   }
 
   .community__subtitle {
+    max-width: 20ch;
     font-size: 20px;
   }
 
+  .community__steps {
+    width: min(100%, 40rem);
+    margin-inline: auto;
+    margin-top: calc(var(--space-12) + 20px);
+  }
+
   .community__poster {
+    width: min(100%, 304px);
     padding: var(--space-6);
+  }
+
+  .community__poster--yellow {
+    margin-top: -20px;
+  }
+
+  .community__poster--green {
+    margin-left: -20px;
+  }
+
+  .community__poster--blue {
+    margin-top: -40px;
+  }
+
+  .community__poster--dark {
+    margin-top: -28px;
+    margin-left: -20px;
   }
 
   .community__poster-number {
@@ -1774,7 +1876,7 @@ figure {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .community {
     --community-mobile-header-lift: 100px;
     --community-mobile-intro-lift: 40px;
@@ -2251,33 +2353,36 @@ figure {
 
 @media (max-width: 1024px) {
   .shows {
-    --shows-card-scale: 0.82;
+    --shows-card-scale: 0.66;
     padding: 88px var(--page-gutter) 108px;
   }
 
   .shows__header {
-    width: min(100%, 760px);
-    align-items: flex-start;
+    width: min(100%, 48rem);
+    align-items: center;
     margin-bottom: 72px;
-    text-align: left;
+    text-align: center;
   }
 
   .shows__body {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 56px;
-    width: min(100%, 31rem);
+    align-items: center;
+    gap: 40px;
+    width: 100%;
     margin-inline: auto;
   }
 
   .shows__cards {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: flex-start;
-    width: 100%;
+    width: min(100%, calc((490px * var(--shows-card-scale) * 2) + 18px));
+    margin-inline: auto;
+    gap: 18px;
   }
 
   .shows__card-wrap {
-    width: 100%;
+    width: calc(490px * var(--shows-card-scale));
   }
 
   .shows__card-stage {
@@ -2290,17 +2395,17 @@ figure {
   }
 
   .shows__upcoming-label {
-    text-align: left;
+    text-align: center;
   }
 
   .shows__upcoming-cities {
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     margin-left: 0;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .shows {
     --shows-card-scale: 0.78;
     padding: 80px var(--page-gutter) 96px;
@@ -2654,7 +2759,32 @@ figure {
   }
 
   .episodes__sidebar {
+    width: 100%;
+    align-items: stretch;
     gap: 20px;
+  }
+
+  .episodes__cta {
+    align-self: center;
+  }
+
+  .episodes__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    min-width: 0;
+    margin-right: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .episodes__card {
+    min-height: 180px;
+  }
+
+  .episodes__card-media {
+    aspect-ratio: 16 / 10;
   }
 
   .episodes__feature-title {
@@ -2778,7 +2908,7 @@ figure {
 
   .episodes__cta {
     font-size: 20px;
-    align-self: flex-start;
+    align-self: center;
   }
 
   .episodes__duration {
@@ -2856,12 +2986,17 @@ figure {
 }
 
 .why__body {
-  display: grid;
-  grid-template-columns: minmax(0, 640px) minmax(320px, 637px);
-  justify-content: center;
-  align-items: end;
-  gap: 0;
   margin-top: 42px;
+}
+
+.why__visual {
+  display: grid;
+  grid-template-columns: minmax(0, 620px) minmax(280px, 420px);
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: min(100%, 1080px);
+  margin-inline: auto;
 }
 
 .why__claims {
@@ -2869,15 +3004,15 @@ figure {
   flex-direction: column;
   align-content: flex-start;
   gap: 54px;
-  max-width: 640px;
-  align-self: center;
-  padding-bottom: 0;
-  transform: translate(84px, -92px);
+  max-width: 620px;
+  transform: none;
   z-index: 2;
 }
 
 .why__claim {
+  display: block;
   margin: 0;
+  min-height: 2em;
   font-family: var(--font-condensed);
   font-size: clamp(3.4rem, 2rem + 2.4vw, 5.25rem);
   line-height: 1;
@@ -2900,9 +3035,9 @@ figure {
 
 .why__image {
   position: relative;
-  align-self: end;
   justify-self: end;
-  width: min(100%, 637px);
+  align-self: center;
+  width: min(100%, 420px);
   margin: 0;
 }
 
@@ -2928,16 +3063,24 @@ figure {
   }
 
   .why__body {
-    grid-template-columns: minmax(0, 560px) minmax(280px, 520px);
-    gap: 0;
     margin-top: 34px;
+  }
+
+  .why__visual {
+    grid-template-columns: minmax(0, 540px) minmax(240px, 360px);
+    width: min(100%, 980px);
+    gap: 8px;
+    transform: translateY(60px);
   }
 
   .why__claims {
     gap: 40px;
-    max-width: 560px;
-    padding-bottom: 0;
-    transform: translate(48px, -56px);
+    max-width: 540px;
+    transform: none;
+  }
+
+  .why__image {
+    width: min(100%, 360px);
   }
 }
 
@@ -2960,25 +3103,38 @@ figure {
   }
 
   .why__body {
-    grid-template-columns: 1fr;
+    margin-top: 34px;
+  }
+
+  .why__visual {
+    grid-template-columns: minmax(0, 420px) minmax(220px, 280px);
+    align-items: start;
+    width: min(100%, 720px);
+    transform: none;
     gap: 28px;
-    margin-top: 46px;
   }
 
   .why__claims {
-    gap: 28px;
-    max-width: 100%;
-    padding-bottom: 0;
+    gap: 20px;
+    max-width: 420px;
     transform: none;
   }
 
+  .why__claim {
+    min-height: 0;
+    font-size: clamp(2.55rem, 1.85rem + 1.9vw, 3.4rem);
+    text-wrap: balance;
+  }
+
   .why__image {
-    justify-self: center;
-    width: min(100%, 520px);
+    justify-self: start;
+    align-self: start;
+    width: min(100%, 280px);
+    transform: none;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .why {
     padding: 60px var(--page-gutter) 60px;
   }
@@ -3000,8 +3156,19 @@ figure {
     margin-top: 34px;
   }
 
+  .why__visual {
+    grid-template-columns: 1fr;
+    width: 100%;
+    transform: none;
+  }
+
   .why__claims {
     gap: 22px;
+  }
+
+  .why__image {
+    justify-self: center;
+    width: min(100%, 520px);
   }
 
   .why__claim {
