@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { homePageContent } from "./homepage-content";
-import type { HomePageContent, ShowCard } from "./homepage-content";
-import { getYouTubeEpisodes } from "../lib/youtube";
-import type { YouTubeEpisode } from "../lib/youtube";
-import { SiteNav } from "./site-nav";
+import { homePageContent } from "../homepage-content";
+import type { HomePageContent, ShowCard } from "../homepage-content";
+import { getYouTubeEpisodes } from "../../lib/youtube";
+import type { YouTubeEpisode } from "../../lib/youtube";
+import { SiteNav } from "../site-nav";
 
 type PosterStep = HomePageContent["community"]["steps"][number];
 
@@ -206,7 +206,7 @@ export default async function HomePage() {
   const restEpisodes = Array.from({ length: 3 }, (_, index) => youtubeEpisodes.episodes[index + 1] ?? null);
 
   return (
-    <div className="page-shell">
+    <div className="page-shell page-shell--v2">
       <SiteNav
         aboutId={about.id}
         communityId={community.id}
