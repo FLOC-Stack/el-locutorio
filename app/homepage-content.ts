@@ -317,10 +317,10 @@ export const homePageContent: HomePageContent = {
       "Constructora\nde una nueva economía.",
     ],
     image: {
-      src: "/assets/why-exist-portrait.png",
-      alt: "Retrato editorial de una joven migrante",
-      width: 1413,
-      height: 1907,
+      src: "/assets/why-image.png",
+      alt: "Teléfonos públicos intervenidos en estilo collage editorial",
+      width: 478,
+      height: 645,
     },
   },
   footer: {
