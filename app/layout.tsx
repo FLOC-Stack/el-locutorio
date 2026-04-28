@@ -14,6 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const dallasBridgeUrl = process.env.NEXT_PUBLIC_DALLAS_BRIDGE_URL;
+  const shouldLoadCSSStudio =
+    process.env.NODE_ENV === "development" &&
+    process.env.NEXT_PUBLIC_ENABLE_CSS_STUDIO === "true";
   const shouldLoadDallasBridge =
     process.env.NODE_ENV === "development" && !!dallasBridgeUrl;
 
@@ -30,7 +33,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        {process.env.NODE_ENV === "development" ? <CSSStudioBridge /> : null}
+        {shouldLoadCSSStudio ? <CSSStudioBridge /> : null}
         {shouldLoadDallasBridge ? (
           <script
             type="module"

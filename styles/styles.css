@@ -391,15 +391,16 @@ figure {
     background: var(--color-brand-orange);
     border: 4px solid var(--color-ink);
     box-shadow: 7px 7px 0 var(--color-brand-blue);
-    transition:
-      opacity var(--motion-medium),
-      transform var(--motion-medium);
+    transition: none;
   }
 
   .nav--open .nav__mobile-panel {
     pointer-events: auto;
     opacity: 1;
     transform: translate(-50%, 0) rotate(-1.2deg);
+    transition:
+      opacity var(--motion-medium),
+      transform var(--motion-medium);
   }
 
   .nav__mobile-links {
@@ -969,6 +970,7 @@ figure {
   .hero__title {
     font-size: 52px;
     transform: rotate(-2deg);
+    white-space: nowrap;
   }
 
   .hero__title-break--mobile {
@@ -2425,7 +2427,7 @@ figure {
 .shows__card-cta--outline {
   color: var(--color-brand-blue);
   background: transparent;
-  border: 4px solid var(--color-brand-blue);
+  border: 4px solid transparent;
 }
 
 .shows__upcoming {
@@ -3711,6 +3713,11 @@ figure {
 }
 
 @media (max-width: 767px) {
+  .page-shell--v2 {
+    --section-eyebrow-size: 36px;
+    --section-title-size: 38px;
+  }
+
   .page-shell--v2 section[id] {
     scroll-margin-top: 0;
   }
@@ -3770,32 +3777,56 @@ figure {
   .page-shell--v2 .community {
     --community-mobile-header-lift: 36px;
     --community-mobile-intro-lift: 8px;
+    scroll-margin-top: 104px;
+    scroll-margin-block-start: 104px;
+  }
+
+  .page-shell--v2 .community__bg {
+    top: 120px;
+  }
+
+  .page-shell--v2 .community__header {
+    width: min(100%, 322px);
+    transform: translateY(-27px);
+  }
+
+  .page-shell--v2 .community__banner {
+    width: 322px;
+  }
+
+  .page-shell--v2 .community__eyebrow {
+    font-size: 30px;
   }
 
   .page-shell--v2 .community__intro {
     position: relative;
+    width: min(100vw, 393px);
+    margin-inline: calc(var(--page-gutter) * -1);
     padding-bottom: 64px;
   }
 
   .page-shell--v2 .community__text {
     position: relative;
     z-index: 2;
+    width: min(100%, 340px);
+    margin-right: auto;
+    padding-left: 4px;
   }
 
   .page-shell--v2 .community__title {
-    width: min(100%, 290px);
-    font-size: 40px;
+    width: min(100%, 304px);
+    font-size: var(--section-title-size);
     line-height: 1;
   }
 
   .page-shell--v2 .community__mic {
     position: absolute;
     z-index: 1;
-    top: -72px;
-    right: -26px;
+    top: -86px;
+    right: -22px;
     width: 180px;
     margin: 0;
-    transform: rotate(-1deg);
+    transform: rotate(-0.25deg);
   }
 
   .page-shell--v2 .community__steps {
@@ -3913,16 +3944,21 @@ figure {
     position: relative;
     z-index: 2;
     width: min(74vw, 304px);
-    gap: 18px;
+    gap: 14px;
     transform: translateY(40px);
+  }
+
+  .page-shell--v2 .why__claim {
+    font-size: 34px;
+    line-height: 0.96;
   }
 
   .page-shell--v2 .why__image {
     position: absolute;
     z-index: 1;
     top: 0;
-    right: -144px;
-    width: min(76vw, 298px);
+    right: -96px;
+    width: min(68vw, 268px);
     margin: 0;
   }
 
@@ -3980,6 +4016,11 @@ figure {
 }
 
 @media (max-width: 390px) {
+  .page-shell--v2 {
+    --section-eyebrow-size: 34px;
+    --section-title-size: 36px;
+  }
+
   .page-shell--v2 .hero__content {
     width: min(100%, 360px);
     padding-inline: 18px;
@@ -4000,5 +4041,9 @@ figure {
     margin-bottom: 0;
     padding-left: 112px;
     background-size: 326px 161px;
+  }
+
+  .page-shell--v2 .why__claim {
+    font-size: 32px;
   }
 }
