@@ -3127,7 +3127,7 @@ a.episodes__cta:focus-visible {
 .why {
   position: relative;
   margin-top: var(--section-pad-lg);
-  padding: var(--section-pad-lg) var(--page-gutter) 24px;
+  padding: var(--section-pad-lg) var(--page-gutter) 120px;
   overflow: hidden;
   isolation: isolate;
 }
@@ -3251,7 +3251,7 @@ a.episodes__cta:focus-visible {
 
 @media (max-width: 1440px) {
   .why {
-    padding: 84px var(--page-gutter) 64px;
+    padding: 84px var(--page-gutter) 144px;
   }
 
   .why::before {
