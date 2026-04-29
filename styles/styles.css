@@ -245,11 +245,6 @@ figure {
   opacity: 0.85;
 }
 
-.nav__cta--disabled:hover {
-  transform: translateY(-50%);
-  box-shadow: none;
-}
-
 .nav__toggle,
 .nav__mobile-panel {
   display: none;
